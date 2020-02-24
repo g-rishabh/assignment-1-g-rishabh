@@ -3,6 +3,7 @@ package LinkList;
 import Person.Person;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ContactList {
     private Node head;
@@ -80,6 +81,40 @@ public class ContactList {
             }
         }
         return name;
+    }
+    public void view()
+    {
+        if(!isEmpty())
+        {
+            System.out.println("---Here are all your contacts---");
+            ArrayList<String> nameList = new ArrayList<>();
+            Node temp = head;
+            while (temp != null)
+            {
+                nameList.add((temp.getData().getFname()+" "+temp.getData().getLname()));
+                temp = temp.getNext();
+            }
+            Collections.sort(nameList);
+            for (String s : nameList)
+            {
+                temp = head;
+                while (temp != null)
+                {
+                    String name=temp.getData().getFname()+" "+temp.getData().getLname();
+                    if (s.equals(name))
+                    {
+                        System.out.println("-------- * -------- * -------- * -------- * -------- * --------");
+                        System.out.print(temp.getData());
+                        System.out.println("-------- * -------- * -------- * -------- * -------- * --------");
+                    }
+                    temp = temp.getNext();
+                }
+            }
+        }
+        else
+        {
+            System.out.println("Contact list is empty");
+        }
     }
     public void search(String name)
     {
